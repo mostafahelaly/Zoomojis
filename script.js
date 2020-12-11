@@ -17,11 +17,11 @@ let pose;
 let skeleton;
 
 let brain;
-let poseLabel;
+let poseLabel = "G";
 
 let question, good, no, hear, mute, thanks;
 
-function preload(){
+function preload() {
     question = loadImage('assets/question.png');
     good = loadImage('assets/good.png');
     no = loadImage('assets/no.png');
@@ -65,7 +65,7 @@ function classifyPose() {
         }
         brain.classify(inputs, gotResult);
     } else {
-        setTimeout(classifyPose, 100);
+        setTimeout(classifyPose, 1000);
     }
 }
 
@@ -74,9 +74,9 @@ function gotResult(error, results) {
         console.error(error);
         return;
     }
-    if (results[0].confidence > 0.85) {
+    if (results[0].confidence > 0.75) {
         poseLabel = results[0].label.toUpperCase();
-        console.log(poseLabel);
+        console.log(poseLabel);;
     }
     //console.log(results[0].confidence);
     classifyPose();
@@ -103,17 +103,17 @@ function draw() {
     image(video, 0, 0, video.width, video.height);
     pop();
 
-    if(poseLabel == "A"){
+    if (poseLabel == "A") {
         image(question, 0, 0, 250, 250);
-    } else if(poseLabel == "B"){
+    } else if (poseLabel == "B") {
         image(good, 0, 0, 250, 250);
-    } else if(poseLabel == "C"){
+    } else if (poseLabel == "C") {
         image(no, 0, 0, 250, 250);
-    } else if(poseLabel == "D"){
+    } else if (poseLabel == "D") {
         image(hear, 0, 0, 250, 250);
-    } else if(poseLabel == "E"){
+    } else if (poseLabel == "E") {
         image(mute, 0, 0, 250, 250);
-    } else if(poseLabel == "F"){
+    } else if (poseLabel == "F") {
         image(thanks, 0, 0, 250, 250);
     }
 }

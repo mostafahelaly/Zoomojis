@@ -1,0 +1,7 @@
+A - question
+B - good
+C - no
+D - can't hear
+E - mute
+F - thank you
+G - brb
